@@ -1,4 +1,7 @@
 import { DataTypes } from "sequelize";
+import bcrypt from "bcrypt";
+import { SALT_ROUND } from "../../config/constants";
+import { isEmailUnique, isValidPassword } from "./user.model.validators";
 
 export const modelOptions = {
   tableName: "users",
@@ -68,22 +71,25 @@ export const attributes = {
   encrypted_password: {
     type: DataTypes.TEXT,
   },
-  password:{
-type:DataTypes.VIRTUAL,
-allowNull:true,
-validate:{
-isValidPassword,
-len:{
-    args:[6,20] as readonly [number,number],
-    msg:'Password length should be 6 to 20 characters'
-}
-},
-set(this,val:string){
-  if(!!val){
-    this.setDataValue('password',val);
-    this.setDataValue('encrypted_password',bycrypt.hashSync(val,SALT_ROUND));
-  }
-}
+  password: {
+    type: DataTypes.VIRTUAL,
+    allowNull: true,
+    validate: {
+      isValidPassword,
+      len: {
+        args: [6, 20] as readonly [number, number],
+        msg: "Password length should be 6 to 20 characters",
+      },
+    },
+    set(this, val: string) {
+      if (!!val) {
+        this.setDataValue("password", val);
+        this.setDataValue(
+          "encrypted_password",
+          bcrypt.hashSync(val, SALT_ROUND)
+        );
+      }
+    },
   },
   token: {
     type: DataTypes.TEXT,

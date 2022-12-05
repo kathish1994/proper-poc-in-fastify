@@ -1,6 +1,6 @@
-import { Op } from 'sequelize';
+import { Op } from "sequelize";
 
-import { UserInstance, UserStatic } from '../../types';
+import { UserInstance, UserStatic } from "../../types/user";
 
 export function isEmailUnique(
   this: UserInstance,
@@ -13,7 +13,7 @@ export function isEmailUnique(
       .findOne({ where: { email: { [Op.iLike]: value } } })
       .then((result: unknown) => {
         if (result) {
-          return next('email id should be unique');
+          return next("email id should be unique");
         }
         return next();
       })

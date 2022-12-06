@@ -7,7 +7,7 @@ export interface UserAttributes {
   last_name: string;
   email: string;
   encrypted_password: string;
-  token: string;
+  access_token: string;
   password_confirmation: string;
 }
 

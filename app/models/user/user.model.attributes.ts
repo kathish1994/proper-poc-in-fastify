@@ -54,18 +54,20 @@ export const attributes = {
     type: new DataTypes.STRING(100),
     allowNull: false,
     unique: true,
-    validate: isEmailUnique,
-    isEmail: {
-      args: true,
-      msg: "Invalid email",
-    },
-    len: {
-      args: [1, 100] as readonly [number, number],
-      msg: "Email length should be 1 to 100 characters",
-    },
-    notNull: {
-      args: true,
-      msg: "Email cannot be empty",
+    validate: {
+      isEmailUnique,
+      isEmail: {
+        args: true,
+        msg: "Invalid email",
+      },
+      len: {
+        args: [1, 100] as readonly [number, number],
+        msg: "Email length should be 1 to 100 characters",
+      },
+      notNull: {
+        args: true,
+        msg: "Email cannot be empty",
+      },
     },
   },
   encrypted_password: {

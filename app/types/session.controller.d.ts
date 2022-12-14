@@ -4,3 +4,8 @@ export interface JwtTokenUserAttributes {
   last_name: string;
   first_name: string;
 }
+
+export interface LoginBodyParams {
+  username: string;
+  password: string;
+}

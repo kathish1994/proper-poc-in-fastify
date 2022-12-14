@@ -93,7 +93,7 @@ export const attributes = {
       }
     },
   },
-  token: {
+  access_token: {
     type: DataTypes.TEXT,
     allowNull: true,
   },

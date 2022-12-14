@@ -6,6 +6,7 @@ function publicRoutes(
   opts: { prefix: string },
   next: (err?: Error) => void
 ) {
+  // fastify.register(sessionsPublicRoutes);
   next();
 }
 
